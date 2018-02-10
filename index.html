@@ -7,7 +7,7 @@
   <title>Angling For a Better Future</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,33 +17,11 @@
   <div class="container">
     <div class="col-lg-12 text-center">
       <h1>Test</h1>
-      <div id="map" style="width:1000px; height:600px; margin: 0 auto 0 auto;"></div>
+      <div id="map"></div>
     </div>
   </div>
 
-  <script>
-    function myMap() {
-      var mapCanvas = document.getElementById("map");
-      var mapOptions = {
-        center: new google.maps.LatLng(42.351422, -83.068341), zoom: 10,
-        mapTypeId: 'hybrid' // Default is 'roadmap'
-      };
-      var map = new google.maps.Map(mapCanvas, mapOptions);
-
-      // Adds marker
-      google.maps.event.addListener(map, 'click', function(event) {
-         placeMarker(event.latLng);
-      });
-
-      function placeMarker(location) {
-          var marker = new google.maps.Marker({
-              position: location,
-              map: map
-          });
-
-      }
-    }
-
+  <script type="text/javascript" src="script.js">
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRrJsyRxDq5N4HCWcs0p7HLAM_gs3qbfI&callback=myMap"
  type="text/javascript"></script>
