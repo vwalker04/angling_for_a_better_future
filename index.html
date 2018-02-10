@@ -15,6 +15,19 @@
 <body>
   <div class="container">
     <h1>Test</h1>
+    <div id="map" style="width:1000px; height:800px;"></div>
   </div>
+
+  <script>
+  function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+      center: new google.maps.LatLng(42.351422, -83.068341), zoom: 10
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+  }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRrJsyRxDq5N4HCWcs0p7HLAM_gs3qbfI&callback=myMap"
+ type="text/javascript"></script>
 </body>
 </html>
