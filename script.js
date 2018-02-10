@@ -18,27 +18,26 @@ function myMap() {
   // });
 
 
-  // Adds Indo Window
-  google.maps.event.addListener(map, 'click', function(event) {
+    var infowindow;
+    // Adds Indo Window
+    google.maps.event.addListener(map, 'click', function(event) {
+    	if (infowindow){
+    		infowindow.close();
+    	}
     placeWindow(event.latLng);
   });
 
+  var source   = document.getElementById("entry-template").innerHTML;
+  console.log(source);
+  var template = Handlebars.compile(source);
+  console.log(template);
+
   function placeWindow(location) {
-    var infowindow = new google.maps.InfoWindow({
+      infowindow = new google.maps.InfoWindow({
       position: location,
       map: map,
-      content: contentString
+      content: template({})
     });
   }
 
-  var contentString = '<div class = "weather">'+
- '<div class = "container-fluid">' +
- '<h1>Weather</h1>' +
- '<p>Ice Thickness: </p>' +
- '<input id="text-field" type = "text" placeholder = "how thick is it?" size = "5" maxLength = "5" required></input>' +
- '<p>Water Temp: </p>' +
- '<input type = "text" placeholder = "temp in fahrenheit" size = "15" maxLength = "3" required></input>' +
- '<button class = "submit">Submit</button>' +
- '</div>' +
- '</div>'
 }
