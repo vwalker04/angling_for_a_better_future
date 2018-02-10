@@ -9,27 +9,36 @@ function myMap() {
   google.maps.event.addListener(map, 'click', function(event) {
     var latLng = event.location;
   });
-  var infowindow = new google.maps.InfoWindow({
+  // var infowindow = new google.maps.InfoWindow({
+  //   map: map
+  // });
+  // var marker = new google.maps.Marker({
+  //   position: location,
+  //   map: map
+  // });
 
-  });
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
 
-
-  // Adds marker
+  // Adds Indo Window
   google.maps.event.addListener(map, 'click', function(event) {
-    placeMarker(event.latLng);
-    infowindow.open(map, marker);
+    placeWindow(event.latLng);
   });
 
-  function placeMarker(location) {
-    var marker = new google.maps.Marker({
+  function placeWindow(location) {
+    var infowindow = new google.maps.InfoWindow({
       position: location,
       map: map,
-      draggable: true
+      content: contentString
     });
   }
 
+  var contentString = '<div class = "weather">'+
+ '<div class = "container-fluid">' +
+ '<h1>Weather</h1>' +
+ '<p>Ice Thickness: </p>' +
+ '<input id="text-field" type = "text" placeholder = "how thick is it?" size = "5" maxLength = "5" required></input>' +
+ '<p>Water Temp: </p>' +
+ '<input type = "text" placeholder = "temp in fahrenheit" size = "15" maxLength = "3" required></input>' +
+ '<button class = "submit">Submit</button>' +
+ '</div>' +
+ '</div>'
 }
