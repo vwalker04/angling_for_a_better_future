@@ -6,3 +6,11 @@
 #text-field {
   width: 150px;
 }
+.fishies {
+ height: 100px;
+ border-radius: 50%;
+ border-color: red;
+ border-width: 10px;
+ border-style: solid;
+ margin: 5px;
+}

@@ -6,25 +6,20 @@ function myMap() {
   };
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+
+  var infowindow;
+    // Adds Indo Window
   google.maps.event.addListener(map, 'click', function(event) {
     var latLng = event.location;
-  });
-  // var infowindow = new google.maps.InfoWindow({
-  //   map: map
-  // });
-  // var marker = new google.maps.Marker({
-  //   position: location,
-  //   map: map
-  // });
-
-
-    var infowindow;
-    // Adds Indo Window
-    google.maps.event.addListener(map, 'click', function(event) {
-    	if (infowindow){
-    		infowindow.close();
-    	}
+  	if (infowindow){
+  		infowindow.close();
+  	}
     placeWindow(event.latLng);
+    placeMarker(event.latLng);
   });
 
   var source   = document.getElementById("entry-template").innerHTML;
@@ -39,5 +34,14 @@ function myMap() {
       content: template({})
     });
   }
+  function placeMarker(location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
 
+  $('#formSubmit').click(function(){
+    if()
+  })
 }

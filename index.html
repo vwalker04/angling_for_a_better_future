@@ -23,6 +23,31 @@
   </div>
 
   <script id="entry-template" type="text/x-handlebars-template">
+    <div class = "main">
+
+ <div class = "container-fluid">
+   <div class = "row">
+     <form class = "info" action = "/submit choice">
+
+       <div class = "col-xs-4"><label><input class = "fish" type="radio">Fishes</input></label></div>
+
+     <div class = "col-xs-4"><label><input class = "stats" type = "radio">What's there?</input></label></div>
+
+    <div class = "col-xs-4"><label><input class = "weather" type = "radio">Recent Weather</input></label></div>
+
+    </form>
+
+
+    <div class = "col-xs-3" id = "submit">
+     <button id="formSubmit" class = "submit btn btn-primary">Submit</button></div>
+     <button class = "submit btn btn-info">Update</button></div>
+
+
+    </div>
+
+  </div>
+</div>
+<!--
     <div class = "weather">
       <div class = "container-fluid">
 
@@ -37,6 +62,50 @@
         <button class = "submit">Submit</button>
       </div>
     </div>
+
+
+    <div class = "fish-description">
+     <div class = "container-fluid">
+
+     <h5 class = "title">Fish Type</h5>
+
+     <div class = "row">
+       <form>
+         <div class = "col-xs-4"><label><input class = "changed" type = "checkbox">Mutated or Diseased</input></label></div>
+       <img class="fishies" src = "https://i.kinja-img.com/gawker-media/image/upload/s--m15tGIuz--/c_scale,fl_progressive,q_80,w_800/17jyw0jzh6puzjpg.jpg" alt = "deformed fish">
+
+       <div class = "col-xs-4"><label><input class = "invasive" type = "checkbox">Invasive</input></label></div>
+      <img class="fishies" src = "https://www.wuft.org/news/files/2013/04/lionfish.jpg" alt = " invasive lionfish swimming for a home">
+
+      <div class = "col-xs-4"><label><input class = "healthy" type = "checkbox">Healthy</input></label></div>
+      <img class="fishies" src = "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/Intro_EverettCollection_FindingNemo.JPG" alt = "fishies!!">
+
+      <div class = "dropdown">
+
+       <select>
+         <option value = "Alewife">Alewife</option>
+         <option value = "Bass">Bass</option>
+         <option value = "Bloater">Bloater</option>
+         <option value = "Bluegill">Bluegill</option>
+         <option value = "Bowfin">Bowfin</option>
+         <option value = "Buffalo">Buffalo</option>
+         <option value = "Bullhead">Bullhead</option>
+         <option value = "Burbot">Burbot</option>
+         <option value = "Carp">Carp</option>
+         <option value = "Catfish">Catfish</option>
+       </select>
+      </div>
+
+       <hr>
+
+      <button class = "submit btn btn-primary">Submit</button>
+
+    </div>
+
+    </div>
+    </div>
+
+  </div> -->
   </script>
 
   <script type="text/javascript" src="script.js"></script>
