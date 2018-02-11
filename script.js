@@ -12,21 +12,15 @@ function myMap() {
     map: map
   });
 
-  google.maps.event.addListener(map, 'click', function(event) {
-    var latLng = event.location;
-  	if (infowindow){
-  		infowindow.close();
-  	}
-    placeWindow(event.latLng);
-    placeMarker(event.latLng);
-  });
-
   // Handlebars variables for Info Window HTML.
   // Each Info Window will render with 'entry-template' ID
   var source   = document.getElementById("entry-template").innerHTML;
   var template = Handlebars.compile(source);
+  google.maps.event.addListener(map, 'click', function(event) {
+    updateMap(event);
+  });
 
-  function placeWindow(location) {
+  function placeWindow(location,template) {
       infowindow = new google.maps.InfoWindow({
       position: location,
       map: map,
@@ -40,7 +34,25 @@ function myMap() {
     });
   }
 
-    // $('#formSubmit').click(function(){
-    //   if()
-    // })
+  function updateMap(event){
+    var latLng = event.location;
+    if (infowindow){
+      infowindow.close();
+    }
+    placeWindow(event.latLng,template);
+    placeMarker(event.latLng);
+  }
+
+
+  $('body').on('click','#formSubmit',{},function(evt){
+    if (infowindow){
+      infowindow.close();
+    }
+    var source   = document.getElementById("weather").innerHTML;
+    var template = Handlebars.compile(source);
+    placeWindow(event.latLng,template);
+
+
+  });
+
 }
