@@ -2,7 +2,7 @@ function myMap() {
   var mapCanvas = document.getElementById("map");
   var mapOptions = {
     center: new google.maps.LatLng(42.351422, -83.068341), zoom: 12,
-    mapTypeId: 'hybrid' // Default is 'roadmap'
+    mapTypeId: 'roadmap' // Default is 'roadmap'
   };
 
   var infowindow;
@@ -58,8 +58,24 @@ function myMap() {
     var template = Handlebars.compile(source);
     placeWindow(pos,template);
 
-    //var selValue = $('input[id="radio1"]:checked').val();
-    //console.log(selValue);
+  }).on('submit','#form-test',{},function(evt){
+      evt.preventDefault();
+      formData = $(this).serializeArray();
+      console.log(formData);
+      // if formData.length > 0, then submit to api
+      // make api cal
+  });
+
+  $('body').on('click','#formUpdate',{},function(evt){
+    $('#form-test').trigger('submit');
+    if (infowindow){
+      infowindow.close();
+    }
+    console.log("formData is " + formData[0].value);
+    // var source   = document.getElementById("weather").innerHTML;
+    var source   = document.getElementById(formData[0].value).innerHTML;
+    var template = Handlebars.compile(source);
+    placeWindow(pos,template);
 
   }).on('submit','#form-test',{},function(evt){
       evt.preventDefault();
@@ -240,5 +256,41 @@ var fishFormat = {
           console.log(error)
       })
   }
+  // update funtions
+  function postFish(fishObj) {
+  $.ajax({
+    "url": "https://angling-for-a-better-future.firebaseio.com/fish.json",
+    "method": "POST",
+    "data": fishObj
+    }).done(function(response){
+      console.log(response);
+    }).fail(function(error){
+      console.log(error);
+    })
+}
+
+function postWeather(weatherObj) {
+  $.ajax({
+    "url": "https://angling-for-a-better-future.firebaseio.com/weather.json",
+    "method": "POST",
+    "data": weatherObj
+    }).done(function(response){
+      console.log(response);
+    }).fail(function(error){
+      console.log(error);
+    })
+}
+
+function postObjects(objectsObj) {
+  $.ajax({
+    "url": "https://angling-for-a-better-future.firebaseio.com/objects.json",
+    "method": "POST",
+    "data": objectsObj
+    }).done(function(response){
+      console.log(response);
+    }).fail(function(error){
+      console.log(error);
+    })
+}
 
 }
