@@ -13,6 +13,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-messaging.js"></script>
 
 </head>
 <body>
@@ -36,7 +41,7 @@
             <!-- Commented divs are for Info Window Vs. under map layout -->
             <!-- <div class="col-sm-1"> -->
               <div class = "radio">
-                <label><input id="radio1" type="radio" name="selection" value="fish">Fish</input></label>
+                <label><input type="radio" name="selection" value="fish">Fish</input></label>
               </div>
             <!-- </div> -->
             <!-- <div class="col-sm-1"> -->
@@ -80,49 +85,120 @@
         </div>
       </script>
 
+    <script id="fish" type="text/x-handlebars-template">
+      <div class = "fish-description">
+       <div class = "container-fluid">
 
-    <!-- <div class = "fish-description">
-     <div class = "container-fluid">
+       <h2 class = "title">Fish Type</h2>
 
-     <h2 class = "title">Fish Type</h2>
+       <div class = "row">
+         <form>
+           <div class = "col-xs-4"><label><input class = "changed" type = "checkbox">Mutated or Diseased</input></label></div>
+         <img class="fishies" src = "https://i.kinja-img.com/gawker-media/image/upload/s--m15tGIuz--/c_scale,fl_progressive,q_80,w_800/17jyw0jzh6puzjpg.jpg" alt = "deformed fish">
 
-     <div class = "row">
-       <form>
-         <div class = "col-xs-4"><label><input class = "changed" type = "checkbox">Mutated or Diseased</input></label></div>
-       <img class="fishies" src = "https://i.kinja-img.com/gawker-media/image/upload/s--m15tGIuz--/c_scale,fl_progressive,q_80,w_800/17jyw0jzh6puzjpg.jpg" alt = "deformed fish">
+         <div class = "col-xs-4"><label><input class = "invasive" type = "checkbox">Invasive</input></label></div>
+        <img class="fishies" src = "https://www.wuft.org/news/files/2013/04/lionfish.jpg" alt = " invasive lionfish swimming for a home">
 
-       <div class = "col-xs-4"><label><input class = "invasive" type = "checkbox">Invasive</input></label></div>
-      <img class="fishies" src = "https://www.wuft.org/news/files/2013/04/lionfish.jpg" alt = " invasive lionfish swimming for a home">
+        <div class = "col-xs-4"><label><input class = "healthy" type = "checkbox">Healthy</input></label></div>
+        <img class="fishies" src = "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/Intro_EverettCollection_FindingNemo.JPG" alt = "fishies!!">
 
-      <div class = "col-xs-4"><label><input class = "healthy" type = "checkbox">Healthy</input></label></div>
-      <img class="fishies" src = "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/Intro_EverettCollection_FindingNemo.JPG" alt = "fishies!!">
+        <div class = "dropdown">
 
-      <div class = "dropdown">
+         <select>
+           <option value = "Alewife">Alewife</option>
+           <option value = "Bass">Bass</option>
+           <option value = "Bloater">Bloater</option>
+           <option value = "Bluegill">Bluegill</option>
+           <option value = "Bowfin">Bowfin</option>
+           <option value = "Buffalo">Buffalo</option>
+           <option value = "Bullhead">Bullhead</option>
+           <option value = "Burbot">Burbot</option>
+           <option value = "Carp">Carp</option>
+           <option value = "Catfish">Catfish</option>
+         </select>
+        </div>
 
-       <select>
-         <option value = "Alewife">Alewife</option>
-         <option value = "Bass">Bass</option>
-         <option value = "Bloater">Bloater</option>
-         <option value = "Bluegill">Bluegill</option>
-         <option value = "Bowfin">Bowfin</option>
-         <option value = "Buffalo">Buffalo</option>
-         <option value = "Bullhead">Bullhead</option>
-         <option value = "Burbot">Burbot</option>
-         <option value = "Carp">Carp</option>
-         <option value = "Catfish">Catfish</option>
-       </select>
+         <hr>
+
+        <button class = "submit btn btn-primary">Submit</button>
       </div>
-
-       <hr>
-
-      <button class = "submit btn btn-primary">Submit</button>
-
+      </div>
     </div>
+  </script>
 
-    </div>
-  </div> -->
+  <script id="presence" type="text/x-handlebars-template">
+  <div class = "amenities">
+
+   <div class = "container-fluid">
+
+   <h1>Conditions</h1>
+
+   <p>Algae Blooms: </p>
+
+     <form>
+     <input name = "yes" type = "radio">Yes</input>
+   <input name = "no" type = "radio" checked = "checked">No</input>
+   </form>
+
+   <p>Scum: </p>
+
+  <form>
+  <input type = "radio" name = "yes">Yes</input>
+  <input type = "radio" name = "no" checked = "checked">No</input>
+  </form>
+
+   <p>Garbage: </p>
+
+  <form>
+  <input type = "radio" name = "none" checked = "checked">None</input>
+  <input type = "radio" name = "light">Light</input>
+  <input type = "radio" name = "heavy">Heavy</input>
+  </form>
+
+   <p>Pollution reports: </p>
+
+  <form>
+  <input type = "checkbox">Oil</input>
+  <input type = "checkbox">Smell</input>
+  <input type = "text" placeholder = "other" size = "20" maxLength = "300"></input>
+  </form>
 
 
+   <h1>Condition and Presence of Amenities</h1>
+
+   <p>Bathrooms: </p>
+
+  <form>
+  <input type = "radio" name = "yes">Yes</input>
+  <input type = "radio" name = "no" checked = "checked">No</input>
+  </form>
+
+   <p>Ramps: </p>
+
+  <form>
+  <input type = "radio" name = "yes">Yes</input>
+  <input type = "radio" name = "no" checked = "checked">No</input>
+  </form>
+
+   <p>Boat Count: </p>
+
+  <form>
+   <input type = "text" placeholder = "how many?" required maxLength = "4" size = "5"></input>
+  </form>
+
+   <p>Docks: </p>
+
+  <form>
+   <input type = "radio" name = "good" checked = "checked">Good</input>
+  <input type = "radio" name = "bad">Bad</input>
+  </form>
+
+   <button type = "submit" class = "btn btn-primary">Submit</button>
+
+   </div>
+
+  </div>
+</script>
 
   <script type="text/javascript" src="script.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRrJsyRxDq5N4HCWcs0p7HLAM_gs3qbfI&callback=myMap"
