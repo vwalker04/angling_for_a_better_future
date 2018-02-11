@@ -1,5 +1,5 @@
 # angling_for_a_better_future
-Internally named wavez (wip)
+Internally named WaveZ (wip)
 
 What is it:
 wavez is a community run tracking app that brings fisherman, environmental activists, and scientists, together.
