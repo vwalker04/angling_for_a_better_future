@@ -4,15 +4,14 @@ function myMap() {
     center: new google.maps.LatLng(42.351422, -83.068341), zoom: 12,
     mapTypeId: 'hybrid' // Default is 'roadmap'
   };
-  var map = new google.maps.Map(mapCanvas, mapOptions);
 
+  var infowindow;
+  var map = new google.maps.Map(mapCanvas, mapOptions);
   var marker = new google.maps.Marker({
     position: location,
     map: map
   });
 
-  var infowindow;
-    // Adds Indo Window
   google.maps.event.addListener(map, 'click', function(event) {
     var latLng = event.location;
   	if (infowindow){
@@ -22,10 +21,10 @@ function myMap() {
     placeMarker(event.latLng);
   });
 
+  // Handlebars variables for Info Window HTML.
+  // Each Info Window will render with 'entry-template' ID
   var source   = document.getElementById("entry-template").innerHTML;
-  console.log(source);
   var template = Handlebars.compile(source);
-  console.log(template);
 
   function placeWindow(location) {
       infowindow = new google.maps.InfoWindow({
@@ -41,7 +40,7 @@ function myMap() {
     });
   }
 
-  $('#formSubmit').click(function(){
-    if()
-  })
+    // $('#formSubmit').click(function(){
+    //   if()
+    // })
 }
