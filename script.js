@@ -17,11 +17,30 @@ function myMap() {
   var source   = document.getElementById("entry-template").innerHTML;
   var template = Handlebars.compile(source);
   var pos;
+  var fishies = [];
 
   google.maps.event.addListener(map, 'click', function(event) {
     pos = event.latLng;
     updateMap(event);
   });
+
+  function makeMarkers(){
+    console.log("Calling makeMarkers");
+    console.log("fishes object has " + fishies + " and length is " + fishies.length);
+    for(var i=0; i<fishies.length; i++){
+      //["condition"], obj["date"], obj["id"],obj["image"], obj["lake"], obj["latitude"], obj["longitude"], obj["observation"], obj["type"]
+      console.log("at array at " + i + " it has ..." + fishies[i]);
+      var con = fishies[i].condition;
+      //var type = fishies[i].type;
+      var lat = fishies[i].latitude;
+      var lng = fishies[i].longitude;
+
+      console.log("in the loop i'm seeing " + con+ " " + lat + " " + lng);
+
+      placeMarker(con, lat, lng);
+    }
+
+  }
 
   function placeWindow(location,template) {
       infowindow = new google.maps.InfoWindow({
@@ -30,9 +49,11 @@ function myMap() {
       content: template({})
     });
   }
-  function placeMarker(location) {
+  function placeMarker(condition,latitude, longitude) {
+    //console.log(" LatLng in the placeMarker is " + google.maps.LatLng(latitude,longitude));
     var marker = new google.maps.Marker({
-      position: location,
+      position: {lat: latitude, lng: longitude},
+      title: String(condition),
       map: map
     });
   }
@@ -122,7 +143,7 @@ var fishFormat = {
       "url": "https://angling-for-a-better-future.firebaseio.com/weather.json",
       "method": "GET",
   }
-  var database;
+  //var database;
   $.ajax(gettingsWeather).done(function (response) {
     console.log(response);
     database = response;
@@ -133,7 +154,7 @@ var fishFormat = {
       "url": "https://angling-for-a-better-future.firebaseio.com/objects.json",
       "method": "GET",
   }
-  var database;
+  //var database;
   $.ajax(gettingsObjects).done(function (response) {
     console.log(response);
     database = response;
@@ -144,7 +165,7 @@ var fishFormat = {
       console.log("database", database);
   }
   var fishy;
-  var fishies = [];
+
   var weathers = [];
   var objecters = [];
   function buildFishObject(info) {
@@ -158,9 +179,11 @@ var fishFormat = {
           fishy = new fishObject(obj, obj["condition"], obj["date"], obj["id"],obj["image"], obj["lake"], obj["latitude"], obj["longitude"], obj["observation"], obj["type"])
           fishies.push(fishy);
           console.log("fishy", fishy);
+          console.log("fishies at 0 is " + fishies[0].condition);
       }
       console.log("fishies[0]", fishies[0]);
       clickFish(1, "angry");
+      makeMarkers();
   };
   function clickFish(id,value) {
       if (fishies[id]) {
