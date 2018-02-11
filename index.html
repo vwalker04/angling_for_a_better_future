@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Angling For a Better Future</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -15,50 +16,74 @@
 
 </head>
 <body>
-  <div class="container">
-    <div class="col-lg-12 text-center">
-      <h1>Test</h1>
-      <div id="map"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="header">Angling For a Better Future</h1>
+        <div id="map"></div>
+      </div>
     </div>
   </div>
 
+  <!-- Handlebars templating script tag
+  puts initial filter options in Info Window -->
   <script id="entry-template" type="text/x-handlebars-template">
-    <div class = "main">
-      <div class = "container-fluid">
-        <div class = "row">
+
+    <div class = "wrapper">
+      <div class = "container info-box">
+        <div class = "row text-center">
           <form class = "info" action = "/submit choice">
-            <div class = "col-xs-4"><label><input class = "fish" type="radio">Fishes</input></label></div>
-            <div class = "col-xs-4"><label><input class = "stats" type = "radio">What's there?</input></label></div>
-            <div class = "col-xs-4"><label><input class = "weather" type = "radio">Recent Weather</input></label></div>
+            <!-- Commented divs are for Info Window Vs. under map layout -->
+            <!-- <div class="col-sm-1"> -->
+              <div class = "radio">
+                <label><input class = "fish" type="radio" name="selection">Fishes</input></label>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-1"> -->
+              <div class = "radio">
+                <label><input class = "stats" type ="radio" name="selection">What's there?</input></label>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-1"> -->
+              <div class = "radio">
+                <label><input class = "weather" type ="radio" name="selection">Recent Weather</input></label>
+              </div>
+            <!-- </div> -->
           </form>
-          <div class = "col-xs-3" id = "submit">
-            <button id="formSubmit" class = "submit btn btn-primary">Submit</button>
-            <button class = "submit btn btn-info">Update</button>
-          </div>
+        </div>
+
+        <div class="row text-center">
+          <!-- <div class = "col-sm-1"> -->
+            <button id="formSubmit" class = "submit btn btn-primary" >Submit</button>
+          <!-- </div> -->
+          <!-- <div class = "col-sm-1 col-sm-offset-1"> -->
+            <button class = "submit btn btn-warning">Update</button>
+          <!-- </div> -->
         </div>
       </div>
-    </div>
-<!--
-    <div class = "weather">
-      <div class = "container-fluid">
 
-        <h5>Weather</h5>
+    </script> <!-- Handlebars end script tag -->
 
-        <p>Ice Thickness: </p>
-        <input type = "text" placeholder = "Inches" size = "5" maxLength = "5" required></input>
+      <!-- Weather -->
+      <!-- <div class = "container">
+        <div class = "">
+          <h2>Weather</h2>
 
-        <p>Water Temp: </p>
-        <input type = "text" placeholder = "Temp in fahrenheit" size = "15" maxLength = "3" required></input>
+          <p>Ice Thickness: </p>
+          <input type = "text" placeholder = "Inches" size = "5" maxLength = "5" required></input>
 
-        <button class = "submit">Submit</button>
+          <p>Water Temp: </p>
+          <input type = "text" placeholder = "Temp in fahrenheit" size = "15" maxLength = "3" required></input>
+
+          <button class = "submit">Submit</button>
+        </div>
       </div>
-    </div>
 
 
     <div class = "fish-description">
      <div class = "container-fluid">
 
-     <h5 class = "title">Fish Type</h5>
+     <h2 class = "title">Fish Type</h2>
 
      <div class = "row">
        <form>
@@ -94,10 +119,10 @@
     </div>
 
     </div>
-    </div>
+  </div>
 
-  </div> -->
-  </script>
+    </div> -->
+
 
   <script type="text/javascript" src="script.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRrJsyRxDq5N4HCWcs0p7HLAM_gs3qbfI&callback=myMap"
