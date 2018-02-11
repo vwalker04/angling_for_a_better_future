@@ -32,11 +32,11 @@
     <div class = "wrapper">
       <div class = "container info-box">
         <div class = "row text-center">
-          <form name="form-test"class = "info" action = "">
+          <form id="form-test" class = "info" action = "">
             <!-- Commented divs are for Info Window Vs. under map layout -->
             <!-- <div class="col-sm-1"> -->
               <div class = "radio">
-                <label><input type="radio" name="selection" value="fish">Fish</input></label>
+                <label><input id="radio1" type="radio" name="selection" value="fish">Fish</input></label>
               </div>
             <!-- </div> -->
             <!-- <div class="col-sm-1"> -->
@@ -67,8 +67,7 @@
 
       <!-- Weather -->
       <script id="weather" type="text/x-handlebars-template">
-        <div class = "container">
-          <div class = "">
+        <div class = "container weather-window">
             <h2>Weather</h2>
 
             <p>Ice Thickness: </p>
@@ -78,7 +77,6 @@
             <input type = "text" placeholder = "Temp in fahrenheit" size = "15" maxLength = "3" required></input>
 
             <button class = "submit">Submit</button>
-          </div>
         </div>
       </script>
 

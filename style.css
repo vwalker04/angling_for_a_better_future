@@ -33,3 +33,7 @@ body {
 .radio {
   text-align: justify;
 }
+.weather-window {
+  width:250px;
+  font-family: 'Amaranth', sans-serif;
+}
