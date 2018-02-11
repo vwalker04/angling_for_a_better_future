@@ -58,6 +58,7 @@ function myMap() {
     });
   }
 
+
   function updateMap(event){
     var latLng = event.location;
     if (infowindow){
@@ -67,6 +68,11 @@ function myMap() {
     placeMarker(pos);
   }
 
+
+var source;
+
+
+/* ************* DON'T TOUCH BELOW!!! ************* */
   var formData;
   $('body').on('click','#formSubmit',{},function(evt){
     $('#form-test').trigger('submit');
@@ -75,7 +81,7 @@ function myMap() {
     }
     console.log("formData is " + formData[0].value);
     // var source   = document.getElementById("weather").innerHTML;
-    var source   = document.getElementById(formData[0].value).innerHTML;
+    source = document.getElementById(formData[0].value).innerHTML;
     var template = Handlebars.compile(source);
     placeWindow(pos,template);
 
@@ -83,9 +89,38 @@ function myMap() {
       evt.preventDefault();
       formData = $(this).serializeArray();
       console.log(formData);
-      // if formData.length > 0, then submit to api
-      // make api cal
   });
+/* ************* DON'T TOUCH ABOVE!!! ************* */
+
+
+
+
+  var firebaseData;
+  $('body').on('click','#weatherSubmit',{},function(evt){
+    //$('#form-test').trigger('submit');
+    console.log("CALLING WEATHER SUBMIT AJAX");
+    /*
+    if (source){
+      source.close();
+    }
+    */
+    var thickness = document.getElementById("thickness").value;
+    console.log("thickness is " + thickness);
+    var temp = document.getElementById("temp").value;
+    console.log("temperature is " + temp);
+    //firebaseData = $(this).serializeArray();
+    //weathery = new weatherObject(obj["id"], obj["ice thickness"], obj["water temp"], obj["wind speed"], obj["lake"], obj["latitude"],obj["longitude"]);
+
+    var wo = new weatherObject(null, thickness, temp, 5, "lake Michigan", pos);
+    console.log("firebaseData is " + wo.lake);
+    postWeather(wo);
+  });
+
+
+
+
+
+
 
   $('body').on('click','#formUpdate',{},function(evt){
     $('#form-test').trigger('submit');
@@ -98,7 +133,7 @@ function myMap() {
     var template = Handlebars.compile(source);
     placeWindow(pos,template);
 
-  }).on('submit','#form-test',{},function(evt){
+  }).on(function(evt){
       evt.preventDefault();
       formData = $(this).serializeArray();
       console.log(formData);
@@ -293,6 +328,7 @@ var fishFormat = {
 }
 
 function postWeather(weatherObj) {
+  console.log("calling postWeather()");
   $.ajax({
     "url": "https://angling-for-a-better-future.firebaseio.com/weather.json",
     "method": "POST",
