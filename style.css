@@ -1,11 +1,22 @@
+body {
+  font-family: 'Amaranth', sans-serif;
+  background-color: #CAF0FF;
+}
+.header {
+  margin: 80px 0;
+  text-align: center;
+  font-size: 80px;
+}
 #map {
   width: 1000px;
   height: 600px;
   margin: 0 auto 0 auto;
 }
+
 #text-field {
   width: 150px;
 }
+
 .fishies {
  height: 100px;
  border-radius: 50%;
@@ -13,4 +24,21 @@
  border-width: 10px;
  border-style: solid;
  margin: 5px;
+}
+
+.info-box {
+  width:250px;
+  font-family: 'Amaranth', sans-serif;
+}
+
+.radio {
+  text-align: justify;
+}
+.weather-window  {
+  width:250px;
+  font-family: 'Amaranth', sans-serif;
+}
+.amenities {
+  width:300px;
+  font-family: 'Amaranth', sans-serif;
 }

@@ -4,24 +4,35 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Angling For a Better Future</title>
+  <title>Wavez</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-messaging.js"></script>
 
 </head>
 <body>
-  <div class="container">
-    <div class="col-lg-12 text-center">
-      <h1>Test</h1>
-      <div id="map"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="row">
+          <h1 class="header"><img width="140px" src="fishicon.png">    Wavez</h1>
+        </div>
+        <div id="map"></div>
+      </div>
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Handlebars template code -->
   <!-- <script id="entry-template" type="text/x-handlebars-template"> -->
     <div class = "main">
@@ -43,79 +54,191 @@
                 <label><input class = "weather" type ="radio" name="selection">Recent Weather</input></label>
               </div>
             </div>
+=======
+  <!-- Handlebars templating script tag
+  puts initial filter options in Info Window -->
+  <script id="entry-template" type="text/x-handlebars-template">
+
+    <div class = "wrapper">
+      <div class = "container info-box">
+        <div class = "row text-center">
+          <form id="form-test" class = "info" action = "">
+            <!-- Commented divs are for Info Window Vs. under map layout -->
+            <!-- <div class="col-sm-1"> -->
+              <div class = "radio">
+                <label><input type="radio" name="selection" value="fish">Fish</input></label>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-1"> -->
+              <div class = "radio">
+                <label><input type ="radio" name="selection" value="presence">What's there?</input></label>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-1"> -->
+              <div class = "radio">
+                <label><input type ="radio" name="selection" value="weather">Recent Weather</input></label>
+              </div>
+            <!-- </div> -->
+>>>>>>> markers
           </form>
         </div>
 
         <div class="row text-center">
+<<<<<<< HEAD
           <div class = "col-sm-1 col-md-offset-4">
             <button id="formSubmit" class = "submit btn btn-primary" >Submit</button>
           </div>
           <div class = "col-sm-1 col-sm-offset-1">
             <button class = "submit btn btn-warning">Update</button>
           </div>
+=======
+          <!-- <div class = "col-sm-1"> -->
+            <button type="button" id="formSubmit" class="submit btn btn-primary">Submit</button>
+          <!-- </div> -->
+          <!-- <div class = "col-sm-1 col-sm-offset-1"> -->
+            <button type="button" id="formUpdate" class="submit btn btn-warning">Update</button>
+          <!-- </div> -->
+>>>>>>> markers
         </div>
       </div>
-    </div>
-<!--
-    <div class = "weather">
-      <div class = "container-fluid">
 
-        <h5>Weather</h5>
+    </script> <!-- Handlebars end script tag -->
 
-        <p>Ice Thickness: </p>
-        <input type = "text" placeholder = "Inches" size = "5" maxLength = "5" required></input>
 
-        <p>Water Temp: </p>
-        <input type = "text" placeholder = "Temp in fahrenheit" size = "15" maxLength = "3" required></input>
+      <!-- Weather -->
+      <script id="weather" type="text/x-handlebars-template">
+        <div class = "container weather-window">
+            <h2>Weather</h2>
 
-        <button class = "submit">Submit</button>
+            <p>Ice Thickness: </p>
+            <input type = "text" placeholder = "Inches" size = "5" maxLength = "5" required></input>
+
+            <p>Water Temp: </p>
+            <input type = "text" placeholder = "Temp in fahrenheit" size = "15" maxLength = "3" required></input>
+
+            <button class = "submit">Submit</button>
+        </div>
+      </script>
+
+    <script id="fish" type="text/x-handlebars-template">
+      <div class = "fish-description">
+       <div class = "container-fluid">
+
+       <h2 class = "title">Fish Type</h2>
+
+       <div class = "row">
+         <form>
+           <div class = "col-xs-4"><label><input class = "changed" type = "checkbox">Mutated or Diseased</input></label></div>
+         <img class="fishies" src = "https://i.kinja-img.com/gawker-media/image/upload/s--m15tGIuz--/c_scale,fl_progressive,q_80,w_800/17jyw0jzh6puzjpg.jpg" alt = "deformed fish">
+
+         <div class = "col-xs-4"><label><input class = "invasive" type = "checkbox">Invasive</input></label></div>
+        <img class="fishies" src = "https://www.wuft.org/news/files/2013/04/lionfish.jpg" alt = " invasive lionfish swimming for a home">
+
+        <div class = "col-xs-4"><label><input class = "healthy" type = "checkbox">Healthy</input></label></div>
+        <img class="fishies" src = "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/Intro_EverettCollection_FindingNemo.JPG" alt = "fishies!!">
+
+        <div class = "dropdown">
+
+         <select>
+           <option value = "Alewife">Alewife</option>
+           <option value = "Bass">Bass</option>
+           <option value = "Bloater">Bloater</option>
+           <option value = "Bluegill">Bluegill</option>
+           <option value = "Bowfin">Bowfin</option>
+           <option value = "Buffalo">Buffalo</option>
+           <option value = "Bullhead">Bullhead</option>
+           <option value = "Burbot">Burbot</option>
+           <option value = "Carp">Carp</option>
+           <option value = "Catfish">Catfish</option>
+         </select>
+        </div>
+
+         <hr>
+
+        <button class = "submit btn btn-primary">Submit</button>
+      </div>
       </div>
     </div>
+  </script>
+
+  <script id="presence" type="text/x-handlebars-template">
+  <div class = "amenities">
+
+   <div class = "container-fluid">
+
+   <h1>Conditions</h1>
+
+   <p>Algae Blooms: </p>
+
+     <form>
+     <input name = "yes" type = "radio">Yes</input>
+   <input name = "no" type = "radio" checked = "checked">No</input>
+   </form>
+
+   <p>Scum: </p>
+
+  <form>
+  <input type = "radio" name = "yes">Yes</input>
+  <input type = "radio" name = "no" checked = "checked">No</input>
+  </form>
+
+   <p>Garbage: </p>
+
+  <form>
+  <input type = "radio" name = "none" checked = "checked">None</input>
+  <input type = "radio" name = "light">Light</input>
+  <input type = "radio" name = "heavy">Heavy</input>
+  </form>
+
+   <p>Pollution reports: </p>
+
+  <form>
+  <input type = "checkbox">Oil</input>
+  <input type = "checkbox">Smell</input>
+  <input type = "text" placeholder = "other" size = "20" maxLength = "300"></input>
+  </form>
 
 
-    <div class = "fish-description">
-     <div class = "container-fluid">
-
-     <h5 class = "title">Fish Type</h5>
-
-     <div class = "row">
-       <form>
-         <div class = "col-xs-4"><label><input class = "changed" type = "checkbox">Mutated or Diseased</input></label></div>
-       <img class="fishies" src = "https://i.kinja-img.com/gawker-media/image/upload/s--m15tGIuz--/c_scale,fl_progressive,q_80,w_800/17jyw0jzh6puzjpg.jpg" alt = "deformed fish">
-
-       <div class = "col-xs-4"><label><input class = "invasive" type = "checkbox">Invasive</input></label></div>
-      <img class="fishies" src = "https://www.wuft.org/news/files/2013/04/lionfish.jpg" alt = " invasive lionfish swimming for a home">
-
-      <div class = "col-xs-4"><label><input class = "healthy" type = "checkbox">Healthy</input></label></div>
-      <img class="fishies" src = "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/Intro_EverettCollection_FindingNemo.JPG" alt = "fishies!!">
-
-      <div class = "dropdown">
-
-       <select>
-         <option value = "Alewife">Alewife</option>
-         <option value = "Bass">Bass</option>
-         <option value = "Bloater">Bloater</option>
-         <option value = "Bluegill">Bluegill</option>
-         <option value = "Bowfin">Bowfin</option>
-         <option value = "Buffalo">Buffalo</option>
-         <option value = "Bullhead">Bullhead</option>
-         <option value = "Burbot">Burbot</option>
-         <option value = "Carp">Carp</option>
-         <option value = "Catfish">Catfish</option>
-       </select>
-      </div>
-
-       <hr>
-
-      <button class = "submit btn btn-primary">Submit</button>
-
-    </div>
-
-    </div>
-    </div>
-
+<<<<<<< HEAD
   </div> -->
   <!-- </script> -->
+=======
+   <h1>Condition and Presence of Amenities</h1>
+
+   <p>Bathrooms: </p>
+
+  <form>
+  <input type = "radio" name = "yes">Yes</input>
+  <input type = "radio" name = "no" checked = "checked">No</input>
+  </form>
+
+   <p>Ramps: </p>
+
+  <form>
+  <input type = "radio" name = "yes">Yes</input>
+  <input type = "radio" name = "no" checked = "checked">No</input>
+  </form>
+
+   <p>Boat Count: </p>
+
+  <form>
+   <input type = "text" placeholder = "how many?" required maxLength = "4" size = "5"></input>
+  </form>
+
+   <p>Docks: </p>
+
+  <form>
+   <input type = "radio" name = "good" checked = "checked">Good</input>
+  <input type = "radio" name = "bad">Bad</input>
+  </form>
+
+   <button type = "submit" class = "btn btn-primary">Submit</button>
+
+   </div>
+
+  </div>
+</script>
+>>>>>>> markers
 
   <script type="text/javascript" src="script.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRrJsyRxDq5N4HCWcs0p7HLAM_gs3qbfI&callback=myMap"
